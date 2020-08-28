@@ -19,10 +19,6 @@ const Landing:React.FC = () => {
   const handleNavigateToGiveClassesPage = () =>{
     navigate('GiveClasses');
   } 
-
-  const handleNavigateToStudyPages = () =>{
-    navigate('Study');
-  } 
   return(
     <Container>
 
@@ -42,18 +38,10 @@ const Landing:React.FC = () => {
       </Title>
       
       <ButtonsContainer>
-        <Button 
-          img={studyIcon} 
-          color={'#9871f5'}
-          onPress={handleNavigateToStudyPages} 
-        >
+        <Button img={studyIcon} color={'#9871f5'}>
           Estudar
         </Button>
-        <Button 
-          onPress={handleNavigateToGiveClassesPage} 
-          img={studyIcon} 
-          color={'#04d361'}
-        >
+        <Button onPress={handleNavigateToGiveClassesPage} img={studyIcon} color={'#04d361'}>
           Dar aulas
         </Button>
       </ButtonsContainer>
