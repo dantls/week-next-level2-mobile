@@ -4,14 +4,18 @@ import {BorderlessButton} from 'react-native-gesture-handler';
 
 import backIcon from '../../assets/images/icons/back.png';
 import logoImg from '../../assets/images/logo.png';
-import { Container,TopBar } from './styles';
+import { Container,TopBar, TitleText } from './styles';
+import { useNavigation } from '@react-navigation/native';
 
-
-function handleGoBack(){
-
+interface PageHeaderProps {
+  title: string;
 }
 
-const PageHeader: React.FC = () => {
+const PageHeader: React.FC<PageHeaderProps> = ({title}) => {
+  const {navigate} = useNavigation();
+  function handleGoBack(){
+    navigate('Landing');
+  }
   return (
     <Container>
       <TopBar>
@@ -20,9 +24,9 @@ const PageHeader: React.FC = () => {
         </BorderlessButton>
         <Image source={logoImg}/>
       </TopBar>
-      {/* <Title>
-        Proffys disponíveis
-      </Title> */}
+      <TitleText>
+        {title}
+      </TitleText>
     </Container>
   );
 }

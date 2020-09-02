@@ -9,3 +9,11 @@ export const TopBar = styled.View`
   align-items: center;
   justify-content: space-between;
 `;
+export const TitleText = styled.Text`
+  font-family: Archivo_700Bold;
+  color: #FFF;
+  font-size: 24;
+  line-height: 32;
+  max-width: 160px;
+  margin: 40px 0px;
+`;

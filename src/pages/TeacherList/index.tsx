@@ -8,7 +8,7 @@ import PageHeader from '../../components/PageHeader';
 const TeacherList:React.FC = () => {
   return(
     <Container>
-      <PageHeader />
+      <PageHeader title="Proffys disponíveis"/>
     </Container>
   )
 }
