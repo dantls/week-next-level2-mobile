@@ -22,7 +22,7 @@ const Landing:React.FC = () => {
   return(
     <Container>
 
-      <Image 
+      {/* <Image 
         style={{
             width:'100%',
             resizeMode:'contain'
@@ -49,7 +49,7 @@ const Landing:React.FC = () => {
       <TotalConnections>
         Total 2 conexões já realizadas {' '}
         <Image source={heartIcon}/>
-      </TotalConnections>
+      </TotalConnections> */}
     </Container>
   )
 }
