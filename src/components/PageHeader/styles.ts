@@ -12,8 +12,8 @@ export const TopBar = styled.View`
 export const TitleText = styled.Text`
   font-family: Archivo_700Bold;
   color: #FFF;
-  font-size: 24;
-  line-height: 32;
+  font-size: 24px;
+  line-height: 32px;
   max-width: 160px;
   margin: 40px 0px;
 `;
