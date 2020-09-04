@@ -1,5 +1,7 @@
 import React from 'react';
 import { Image } from 'react-native';
+import FavoriteButton from '../FavoriteButton';
+import ContactButton from '../ContactButton';
 
 
 import heartOutlineIcon from '../../assets/images/icons/heart-outline.png';
@@ -14,12 +16,9 @@ import {
   ProfileTextName,
   ProfileTextSubject,
   ProfileTextBio,
-  TextPrice,
   TextPriceValue,
   Footer,
-  ButtonContact,
   ButtonsContainer,
-  ButtonFavorite
 } from './styles';
 
 const TeacherItem: React.FC = () => {
@@ -44,18 +43,18 @@ const TeacherItem: React.FC = () => {
         Apaixonado por explodir a mente das pessoas com muito conhecimento.
       </ProfileTextBio>
       <Footer>
-        <TextPrice>
-          Preço/hora {'  '}
-          <TextPriceValue>R$ 20,00</TextPriceValue>
-        </TextPrice>
+        <TextPriceValue>Preço/hora {'  '} R$ 20,00</TextPriceValue>
         <ButtonsContainer>
-          <ButtonFavorite>
-            <Image source={heartOutlineIcon}/>
-          </ButtonFavorite>
-          <ButtonContact>
-            <Image source={whatsappIcon}/>
+          <FavoriteButton 
+            color={'#8257e5'}
+            img={heartOutlineIcon}
+          />
+          <ContactButton
+            color={'#04d361'}
+            img={whatsappIcon}
+          >
             Entrar em contato
-          </ButtonContact>
+          </ContactButton>
         </ButtonsContainer>
       </Footer>
     </Container>

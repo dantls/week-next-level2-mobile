@@ -67,6 +67,7 @@ export const TextPriceValue = styled.Text`
 export const ButtonsContainer = styled.View`
  flex-direction: row;
  margin-top: 16px;
+
 `;
 export const ButtonContact = styled(RectButton)`
  background-color: #8257e5;
