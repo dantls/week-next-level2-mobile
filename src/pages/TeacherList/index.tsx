@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   Container,
-  ScroolView, 
+  ScroolView,
   SearchForm,
   SearchDataGroup,
   InputBlock,
@@ -11,28 +11,47 @@ import {
 } from './styles';
 import FilterButton from '../../components/FilterButton';
 import PageHeader from '../../components/PageHeader';
-import TeacherItem from '../../components/TeacherItem';
+import TeacherItem, { Classes } from '../../components/TeacherItem';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { Feather } from "@expo/vector-icons";
+import api from '../../services/api';
 
 
 const TeacherList:React.FC = () => {
   const [isFiltersVisible, setIsFiltersVisible] = useState(false);
 
+  const [teachers, setTeachers] = useState([]);
+  const [subject, setSubject] = useState('');
+  const [week_day, setWeekDay] = useState('');
+  const [time, setTime] = useState('');
+
   const handleToggleFiltersVisible = () => {
     setIsFiltersVisible(!isFiltersVisible);
   }
+  const handleFiltersSubmit = async () => {
+    const response = await api.get('/classes',{
+      params:{
+        subject,
+        week_day,
+        time
+      }
+    });
+
+    setIsFiltersVisible(false);
+    setTeachers(response.data);
+  }
+
 
   return(
     <>
       <Container>
         <PageHeader
-          title="Proffys disponíveis" 
+          title="Proffys disponíveis"
           headerRight={(
             <BorderlessButton onPress={handleToggleFiltersVisible}>
-              <Feather 
-                name="filter" 
-                size={20} 
+              <Feather
+                name="filter"
+                size={20}
                 color="#fff"
               />
             </BorderlessButton>
@@ -43,6 +62,8 @@ const TeacherList:React.FC = () => {
               <InputText
                 placeholderTextColor="#c1bcc0"
                 placeholder="Qual é a matéria?"
+                value={subject}
+                onChangeText={text => setSubject(text)}
               />
               <SearchDataGroup>
                 <InputBlock>
@@ -50,6 +71,8 @@ const TeacherList:React.FC = () => {
                   <InputText
                     placeholderTextColor="#c1bcc0"
                     placeholder="Qual o dia?"
+                    value={week_day}
+                    onChangeText={text => setWeekDay(text)}
                   />
                 </InputBlock>
 
@@ -58,34 +81,43 @@ const TeacherList:React.FC = () => {
                   <InputText
                     placeholderTextColor="#c1bcc0"
                     placeholder="Qual é o horário?"
+                    value={time}
+                    onChangeText={text => setTime(text)}
                   />
                 </InputBlock>
-             
-                
+
+
               </SearchDataGroup>
 
               <FilterButton
-                icon={(<Feather 
-                  name="search" 
-                  size={20} 
+                onPress={handleFiltersSubmit}
+                icon={(<Feather
+                  name="search"
+                  size={20}
                   color="#fff"
                 />)}
               >
                 Filtrar
-                
+
               </FilterButton>
             </SearchForm>
         )}
-        </PageHeader> 
+        </PageHeader>
       </Container>
       <ScroolView
         contentContainerStyle={{
           paddingHorizontal: 14,
           paddingBottom: 14,
-        }} 
+        }}
       >
-        <TeacherItem />
-        <TeacherItem />
+        {teachers.map((item:Classes) => {
+          return(
+            <TeacherItem
+              key={item.id}
+              classes={item}
+            />
+          )
+        })}
       </ScroolView>
     </>
   )

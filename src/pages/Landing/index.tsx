@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Image } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
-
 
 import { Container,Title, TitleBold, ButtonsContainer, TotalConnections } from './styles';
 
@@ -12,22 +11,35 @@ import studyIcon from '../../assets/images/icons/study.png';
 import giveClasses from '../../assets/images/icons/give-classes.png';
 import Button from '../../components/Button';
 import heartIcon from '../../assets/images/icons/heart.png';
+import api from '../../services/api';
 
 
 const Landing:React.FC = () => {
   const {navigate} = useNavigation();
 
+  const [totalConnections , setTotalConnections] = useState(0);
+
+  useEffect(() => {
+    const loadData = async () => {
+      const response = await api.get('/connections');
+      const {total} = response.data;
+      setTotalConnections(total);
+    }
+    loadData();
+  },[]);
+
+
   const handleNavigateToGiveClassesPage = () =>{
     navigate('GiveClasses');
-  } 
+  }
 
   const handleNavigateToStudyPages = () =>{
     navigate('Study');
-  } 
+  }
   return(
     <Container>
 
-      <Image 
+      <Image
         style={{
             width:'100%',
             resizeMode:'contain'
@@ -41,18 +53,18 @@ const Landing:React.FC = () => {
           O que deseja fazer?
         </TitleBold>
       </Title>
-      
+
       <ButtonsContainer>
-        <Button 
-          img={studyIcon} 
+        <Button
+          img={studyIcon}
           color={'#9871f5'}
-          onPress={handleNavigateToStudyPages} 
+          onPress={handleNavigateToStudyPages}
         >
           Estudar
         </Button>
-        <Button 
-          onPress={handleNavigateToGiveClassesPage} 
-          img={giveClasses} 
+        <Button
+          onPress={handleNavigateToGiveClassesPage}
+          img={giveClasses}
           color={'#04d361'}
         >
           Dar aulas
@@ -60,7 +72,7 @@ const Landing:React.FC = () => {
       </ButtonsContainer>
 
       <TotalConnections>
-        Total 2 conexões já realizadas {' '}
+        Total {totalConnections} conexões já realizadas {' '}
         <Image source={heartIcon}/>
       </TotalConnections>
     </Container>

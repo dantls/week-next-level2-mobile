@@ -1,14 +1,29 @@
 import React from 'react';
-import { Image } from 'react-native';
 import FavoriteButton from '../FavoriteButton';
 import ContactButton from '../ContactButton';
 
+interface User{
+  id: string;
+  avatar:string;
+  bio:string;
+  name: string;
+  whatsapp: string;
+}
+export interface Classes{
+  id: string;
+  user: User;
+  subject: string;
+  cost: number;
+}
+interface TeacherItemProps{
+  classes:Classes;
+}
 
 import heartOutlineIcon from '../../assets/images/icons/heart-outline.png';
 import unFavoriteIcon from '../../assets/images/icons/unfavorite.png';
 import whatsappIcon from '../../assets/images/icons/whatsapp.png';
 
-import { 
+import {
   Container,
   ProfileContent,
   ProfileInfo,
@@ -21,31 +36,32 @@ import {
   ButtonsContainer,
 } from './styles';
 
-const TeacherItem: React.FC = () => {
+const TeacherItem: React.FC<TeacherItemProps> = ({classes}) => {
+  const {id, avatar,name,bio,whatsapp} =classes.user;
+  const {subject,cost} =classes;
+
   return (
     <Container>
       <ProfileContent>
-        <ProfileImage 
-          source={{uri: 'http://github.com/dantls.png'}}
+        <ProfileImage
+          source={{uri: avatar}}
         />
         <ProfileInfo>
             <ProfileTextName>
-              Danilo Gomes 
+              {name}
             </ProfileTextName>
             <ProfileTextSubject>
-              Javascript
+              {subject}
             </ProfileTextSubject>
         </ProfileInfo>
       </ProfileContent>
       <ProfileTextBio>
-        Entusiasta da melhores tecnologias em Javascript.
-        {'\n'}{'\n'}
-        Apaixonado por explodir a mente das pessoas com muito conhecimento.
+        {bio}
       </ProfileTextBio>
       <Footer>
-        <TextPriceValue>Preço/hora {'  '} R$ 20,00</TextPriceValue>
+        <TextPriceValue>Preço/hora {'  '} R$ {cost}</TextPriceValue>
         <ButtonsContainer>
-          <FavoriteButton 
+          <FavoriteButton
             color={'#8257e5'}
             img={heartOutlineIcon}
           />
