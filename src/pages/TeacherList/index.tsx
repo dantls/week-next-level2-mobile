@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { Container,ScroolView, SearchForm,SearchDataGroup,InputBlock,LabelText,InputText } from './styles';
+import {
+  Container,
+  ScroolView, 
+  SearchForm,
+  SearchDataGroup,
+  InputBlock,
+  LabelText,
+  InputText,
+
+} from './styles';
+import FilterButton from '../../components/FilterButton';
 import PageHeader from '../../components/PageHeader';
 import TeacherItem from '../../components/TeacherItem';
 import { BorderlessButton } from 'react-native-gesture-handler';
@@ -50,8 +60,20 @@ const TeacherList:React.FC = () => {
                     placeholder="Qual é o horário?"
                   />
                 </InputBlock>
+             
+                
               </SearchDataGroup>
 
+              <FilterButton
+                icon={(<Feather 
+                  name="search" 
+                  size={20} 
+                  color="#fff"
+                />)}
+              >
+                Filtrar
+                
+              </FilterButton>
             </SearchForm>
         )}
         </PageHeader> 

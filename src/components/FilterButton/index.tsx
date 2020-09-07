@@ -1,24 +1,24 @@
-import React from 'react';
-import { Image } from 'react-native';
+import React,{ReactNode} from 'react';
 import { Container, ButtonText } from './styles';
 import { RectButtonProperties } from 'react-native-gesture-handler';
 
 interface ButtonProps extends RectButtonProperties {
   children: string;
-  img?: string;
   color?: string;
+  icon?: ReactNode;
 }
 
 
-const Button: React.FC<ButtonProps> = ({children, color, img ,...rest}) => {
+const FilterButton: React.FC<ButtonProps> = ({children, color ,icon,...rest}) => {
 
   return (
     <Container color={color} {...rest}>
-      <Image source={img} />
+     
       <ButtonText>
         {children}
       </ButtonText>
+      {icon}
     </Container> 
 )}
 
-export default Button;
+export default FilterButton;

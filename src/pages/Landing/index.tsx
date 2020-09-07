@@ -9,6 +9,7 @@ import { Container,Title, TitleBold, ButtonsContainer, TotalConnections } from '
 
 import landingImg from '../../assets/images/landing.png'
 import studyIcon from '../../assets/images/icons/study.png';
+import giveClasses from '../../assets/images/icons/give-classes.png';
 import Button from '../../components/Button';
 import heartIcon from '../../assets/images/icons/heart.png';
 
@@ -51,7 +52,7 @@ const Landing:React.FC = () => {
         </Button>
         <Button 
           onPress={handleNavigateToGiveClassesPage} 
-          img={studyIcon} 
+          img={giveClasses} 
           color={'#04d361'}
         >
           Dar aulas

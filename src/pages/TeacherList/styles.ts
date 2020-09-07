@@ -1,5 +1,5 @@
  import styled from 'styled-components/native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, RectButton } from 'react-native-gesture-handler';
 
 
 export const Container = styled.View`
@@ -9,7 +9,7 @@ export const Container = styled.View`
 
 
 export const SearchForm = styled.View`
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 `;
 export const LabelText = styled.Text`
   color: #d4c2ff;
