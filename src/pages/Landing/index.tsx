@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Image } from 'react-native';
+import { Image, AsyncStorage } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -29,11 +29,13 @@ const Landing:React.FC = () => {
   },[]);
 
 
-  const handleNavigateToGiveClassesPage = () =>{
+  const handleNavigateToGiveClassesPage = async() =>{
+    await AsyncStorage.removeItem('favorites');
     navigate('GiveClasses');
   }
 
-  const handleNavigateToStudyPages = () =>{
+  const handleNavigateToStudyPages = async() =>{
+    await AsyncStorage.removeItem('favorites');
     navigate('Study');
   }
   return(
