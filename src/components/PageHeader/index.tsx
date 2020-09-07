@@ -1,17 +1,18 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {Image} from 'react-native';
 import {BorderlessButton} from 'react-native-gesture-handler';
 
 import backIcon from '../../assets/images/icons/back.png';
 import logoImg from '../../assets/images/logo.png';
-import { Container,TopBar, TitleText } from './styles';
+import { Container,TopBar, TitleText,Header } from './styles';
 import { useNavigation } from '@react-navigation/native';
 
 interface PageHeaderProps {
   title: string;
+  headerRight?: ReactNode;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({title}) => {
+const PageHeader: React.FC<PageHeaderProps> = ({title,children, headerRight}) => {
   const {navigate} = useNavigation();
   function handleGoBack(){
     navigate('Landing');
@@ -20,13 +21,24 @@ const PageHeader: React.FC<PageHeaderProps> = ({title}) => {
     <Container>
       <TopBar>
         <BorderlessButton onPress={handleGoBack}>
-          <Image source={backIcon}/>
+          <Image
+            source={backIcon}
+          />
         </BorderlessButton>
-        <Image source={logoImg}/>
+        <Image 
+          style={{
+            resizeMode:'contain'
+          }}        
+          source={logoImg}
+        />
       </TopBar>
-      <TitleText>
-        {title}
-      </TitleText>
+      <Header>
+        <TitleText>
+          {title}
+        </TitleText>
+        {headerRight}
+      </Header>
+      {children}
     </Container>
   );
 }

@@ -7,7 +7,7 @@ export const Container = styled.View`
   border-color: #e6e6f0;
   border-radius: 8px;
   margin-bottom: 16px;
-  overflow: hidden
+  overflow: hidden;
 `;
 
 export const ProfileContent = styled.View`

@@ -14,11 +14,11 @@ export const Container = styled(RectButton)<ContainerProps>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-right: 8px;
+  margin-right: 6px;
 `;
 export const ButtonText = styled.Text`
   color: #fff;
   font-family: Archivo_700Bold;
-  font-size: 20px;
-  margin-left: 20px;
+  font-size: 18px;
+  margin-left: 10px;
 `;
