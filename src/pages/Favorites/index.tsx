@@ -8,9 +8,6 @@ import TeacherItem, { Classes } from '../../components/TeacherItem';
 import { ScroolView } from '../TeacherList/styles';
 
 const Favorites:React.FC = () => {
-
-
-
   const [favorites, setFavorites] = useState<Classes[]>([]);
   function loadFavorites () {
     AsyncStorage.getItem('favorites').then(response => {
@@ -27,10 +24,6 @@ const Favorites:React.FC = () => {
   return(<>
     <Container>
       <PageHeader title="Meus Proffys Favoritos"/>
-
-
-
-
     </Container>
     <ScroolView
     contentContainerStyle={{
