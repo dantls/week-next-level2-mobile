@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import {
@@ -17,9 +17,12 @@ import TeacherItem, { Classes ,User} from '../../components/TeacherItem';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { Feather } from "@expo/vector-icons";
 import api from '../../services/api';
+import FavoritesContext from '../../contexts/favorites';
 
 
 const TeacherList:React.FC = () => {
+
+  const { } = useContext(FavoritesContext)
 
   const [isFiltersVisible, setIsFiltersVisible] = useState(false);
   const [favorites, setFavorites] = useState<Classes[]>([]);
