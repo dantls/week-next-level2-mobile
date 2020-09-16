@@ -1,11 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import api from '../../services/api';
 import {Linking} from 'react-native';
 import FavoriteButton from '../FavoriteButton';
 import ContactButton from '../ContactButton';
 import AsyncStorage from '@react-native-community/async-storage';
-
-
 
 export interface User{
   id: string;
@@ -101,7 +99,7 @@ const TeacherItem: React.FC<TeacherItemProps> = ({classes, favorited}) => {
         <TextPriceValue>Preço/hora {'  '} R$ {cost}</TextPriceValue>
         <ButtonsContainer>
           <FavoriteButton
-            color={'#8257e5'}
+            color={isFavorited ? '#8257e5' : '#e33d3d'}
             onPress={handleToggleFavorite}
             img={isFavorited ? unFavoriteIcon : heartOutlineIcon }
           />
