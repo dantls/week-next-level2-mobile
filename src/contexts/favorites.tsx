@@ -21,16 +21,16 @@ const FavoritesProvider: React.FC = ({children}) => {
   }, []);
 
   const isFavorite = useCallback(async (item:TeacherItemProps) => {
+    const favoritesExist = favorites.find(favorite => favorite.classes.id === item.classes.id);
 
-  setFavorites(
-          favorites.map(favorite =>
-          favorite.classes.id === item.classes.id
-          ? { ...favorite, favorited: !item.favorited }
-          : favorite
-      ),
-  );
+    if(!favoritesExist){
+      setFavorites([...favorites, {...item, favorited: !item.favorited}]);
+    } else{
+      setFavorites(favorites.filter(favorite => favorite.classes.id !== item.classes.id))
+    }
 
-  },[]);
+  },[favorites]);
+
 
   const loadFavorites = useCallback(async () => {
     const response = await AsyncStorage.getItem('favorites');

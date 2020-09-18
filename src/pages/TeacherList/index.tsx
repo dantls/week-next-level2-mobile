@@ -121,7 +121,9 @@ const TeacherList:React.FC = () => {
 
           return(
             <TeacherItem
-              favorited={!!favorites.find(favorite => favorite.classes.user.id === item.user.id)}
+              favorited={!!favorites.find(favorite =>
+                favorite.classes.user.id === item.user.id && favorite.favorited
+              )}
               key={item.id}
               classes={item}
             />

@@ -28,7 +28,9 @@ const Favorites:React.FC = () => {
 
       return(
         <TeacherItem
-          favorited
+          favorited={!!favorites.find(favorite =>
+            favorite.classes.user.id === item.classes.user.id && item.favorited
+          )}
           key={item.classes.id}
           classes={item.classes}
         />

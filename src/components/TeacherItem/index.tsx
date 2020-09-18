@@ -42,7 +42,7 @@ import {
 import { useFavorites } from '../../contexts/favorites';
 
 const TeacherItem: React.FC<TeacherItemProps> = (item: TeacherItemProps) => {
-  const { isFavorite } = useFavorites();
+  const { favorites, isFavorite } = useFavorites();
 
   const {id, avatar,name,bio,whatsapp} =item.classes.user;
   const {subject,cost} =item.classes;
@@ -54,31 +54,8 @@ const TeacherItem: React.FC<TeacherItemProps> = (item: TeacherItemProps) => {
     Linking.openURL(`whatsapp://send?phone=${whatsapp}`);
   }
 
-  const handleToggleFavorite = async () => {
-    // console.log(item);
-    // await item.favorited = true;
-    // console.log(item);
-
+  const handleToggleFavorite = async (item:TeacherItemProps) => {
     await isFavorite(item);
-
-    //const favorites = await AsyncStorage.getItem('favorites');
-
-    // let favoritesArray:any = [];
-
-    //  if(favorites){
-    //    favoritesArray = favorites;
-    //  }
-    // if(isFavorited){
-    //   const favoriteIndex = favoritesArray.findIndex( (teacherItem:TeacherItemProps) => {
-
-    //     return teacherItem.classes.user.id === classes.user.id;
-    //   });
-    //   favoritesArray.splice(favoriteIndex,1);
-    // } else{
-    //   favoritesArray.push(classes);
-    // }
-    // await AsyncStorage.setItem('favorites', JSON.stringify(favoritesArray));
-
   }
 
   return (
@@ -104,7 +81,7 @@ const TeacherItem: React.FC<TeacherItemProps> = (item: TeacherItemProps) => {
         <ButtonsContainer>
           <FavoriteButton
             color={item.favorited ? '#8257e5' : '#e33d3d'}
-            onPress={handleToggleFavorite}
+            onPress={()=>handleToggleFavorite(item)}
             img={item.favorited ? unFavoriteIcon : heartOutlineIcon }
           />
           <ContactButton
