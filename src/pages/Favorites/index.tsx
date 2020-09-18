@@ -3,7 +3,6 @@ import { useFocusEffect } from '@react-navigation/native'
 
 import { Container } from './styles';
 import PageHeader from '../../components/PageHeader';
-import AsyncStorage from '@react-native-community/async-storage';
 import TeacherItem, { Classes } from '../../components/TeacherItem';
 import { ScroolView } from '../TeacherList/styles';
 
@@ -14,10 +13,6 @@ const Favorites:React.FC = () => {
       if(response) {
         const favoritedTeachers = JSON.parse(response);
 
-        setFavorites(favoritedTeachers);
-      }
-    })
-  }
   useFocusEffect(()=>{
     loadFavorites();
   });
