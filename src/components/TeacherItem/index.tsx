@@ -5,8 +5,6 @@ import FavoriteButton from '../FavoriteButton';
 import ContactButton from '../ContactButton';
 import AsyncStorage from '@react-native-community/async-storage';
 
-
-
 export interface User{
   id: string;
   avatar:string;
@@ -41,12 +39,13 @@ import {
   Footer,
   ButtonsContainer,
 } from './styles';
+import { useFavorites } from '../../contexts/favorites';
 
-const TeacherItem: React.FC<TeacherItemProps> = ({classes, favorited}) => {
+const TeacherItem: React.FC<TeacherItemProps> = (item: TeacherItemProps) => {
+  const { isFavorite } = useFavorites();
 
-  const [isFavorited, setIsFavorited] = useState(favorited);
-  const {id, avatar,name,bio,whatsapp} =classes.user;
-  const {subject,cost} =classes;
+  const {id, avatar,name,bio,whatsapp} =item.classes.user;
+  const {subject,cost} =item.classes;
 
   const handleLinkWhatsapp = async () => {
     await api.post('/connections', {
@@ -56,26 +55,29 @@ const TeacherItem: React.FC<TeacherItemProps> = ({classes, favorited}) => {
   }
 
   const handleToggleFavorite = async () => {
-    const favorites = await AsyncStorage.getItem('favorites');
+    // console.log(item);
+    // await item.favorited = true;
+    // console.log(item);
 
-    let favoritesArray = [];
+    await isFavorite(item);
 
-    if(favorites){
-      favoritesArray = JSON.parse(favorites);
-    }
+    //const favorites = await AsyncStorage.getItem('favorites');
 
-    if(isFavorited){
-      const favoriteIndex = favoritesArray.findIndex( (teacherItem:User) => {
-        return teacherItem.id === classes.user.id;
-      });
-      favoritesArray.splice(favoriteIndex,1);
-      setIsFavorited(false);
-    } else{
-      favoritesArray.push(classes);
-      setIsFavorited(true);
+    // let favoritesArray:any = [];
 
-    }
-    await AsyncStorage.setItem('favorites', JSON.stringify(favoritesArray));
+    //  if(favorites){
+    //    favoritesArray = favorites;
+    //  }
+    // if(isFavorited){
+    //   const favoriteIndex = favoritesArray.findIndex( (teacherItem:TeacherItemProps) => {
+
+    //     return teacherItem.classes.user.id === classes.user.id;
+    //   });
+    //   favoritesArray.splice(favoriteIndex,1);
+    // } else{
+    //   favoritesArray.push(classes);
+    // }
+    // await AsyncStorage.setItem('favorites', JSON.stringify(favoritesArray));
 
   }
 
@@ -103,7 +105,7 @@ const TeacherItem: React.FC<TeacherItemProps> = ({classes, favorited}) => {
           <FavoriteButton
             color={'#8257e5'}
             onPress={handleToggleFavorite}
-            img={isFavorited ? unFavoriteIcon : heartOutlineIcon }
+            img={item.favorited ? unFavoriteIcon : heartOutlineIcon }
           />
           <ContactButton
             onPress={handleLinkWhatsapp}

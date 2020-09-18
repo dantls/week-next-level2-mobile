@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useFocusEffect } from '@react-navigation/native'
 
 import { Container } from './styles';
 import PageHeader from '../../components/PageHeader';
-import TeacherItem, { Classes } from '../../components/TeacherItem';
+import TeacherItem, { TeacherItemProps } from '../../components/TeacherItem';
 import { ScroolView } from '../TeacherList/styles';
+import { useFavorites } from '../../contexts/favorites';
 
 const Favorites:React.FC = () => {
 
-
-
+  const { favorites , loadFavorites } = useFavorites();
 
   useFocusEffect(()=>{
     loadFavorites();
@@ -24,13 +24,13 @@ const Favorites:React.FC = () => {
       paddingBottom: 14,
     }}
   >
-    {favorites.map((item:Classes) => {
+    {favorites && favorites.map((item:TeacherItemProps) => {
 
       return(
         <TeacherItem
           favorited
-          key={item.id}
-          classes={item}
+          key={item.classes.id}
+          classes={item.classes}
         />
       )
     })}

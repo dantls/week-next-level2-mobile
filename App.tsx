@@ -6,7 +6,7 @@ import { Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/popp
 
 import AppStack from './src/routes/AppStack';
 
-import FavoritesContext from './src/context/index';
+import AppProvider from './src/contexts';
 
 export default function App() {
   let[fontsLoaded] = useFonts({
@@ -22,7 +22,10 @@ export default function App() {
     return (
       <>
         <StatusBar style="light" />
-        <AppStack />
+        <AppProvider>
+          <AppStack />
+        </AppProvider>
+
       </>
     );
   }
