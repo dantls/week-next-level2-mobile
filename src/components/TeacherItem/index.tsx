@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import api from '../../services/api';
 import {Linking} from 'react-native';
 import FavoriteButton from '../FavoriteButton';
@@ -103,7 +103,7 @@ const TeacherItem: React.FC<TeacherItemProps> = (item: TeacherItemProps) => {
         <TextPriceValue>Preço/hora {'  '} R$ {cost}</TextPriceValue>
         <ButtonsContainer>
           <FavoriteButton
-            color={'#8257e5'}
+            color={item.favorited ? '#8257e5' : '#e33d3d'}
             onPress={handleToggleFavorite}
             img={item.favorited ? unFavoriteIcon : heartOutlineIcon }
           />
