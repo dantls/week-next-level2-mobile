@@ -30,7 +30,7 @@ const GiveClasses:React.FC = () => {
         <Description>Para começar, você precisa se cadastrar como professor na nossa plataforma web.
         </Description>
       </ImageBackground>
-    
+
       <Button onPress={handleNavigateBack}>
         <ButtonText>Tudo bem</ButtonText>
       </Button>
