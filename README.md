@@ -45,9 +45,9 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 <h1 name="tecnologias">➕ Plus</h1>
 
-- [Context.API](https://reactjs.org/docs/context.html)
+- [context](https://reactjs.org/docs/context.html)
 - [react-native-picker](https://github.com/react-native-community/react-native-picker)
-- [Styled-components]https://styled-components.com/)
+- [Styled-components](https://styled-components.com/)
 
 
 <h4 name="license" align="center">
