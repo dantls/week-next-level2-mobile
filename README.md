@@ -50,6 +50,11 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Styled-components](https://styled-components.com/)
 
 
+<p align="center">
+  <img src="https://github.com/dantls/week-next-level2-mobile/blob/master/github-assets/previous.gif" alt="previous" />
+</p>
+
+
 <h4 name="license" align="center">
     Desenvolvido por <a href="https://www.linkedin.com/in/danilo-gomes-394459103/" target="_blank">Danilo Gomes</a>
 </h4>
